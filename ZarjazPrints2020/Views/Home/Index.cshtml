@@ -1,0 +1,79 @@
+﻿@{
+
+
+}
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="first-slide" src="/img/banner_91.jpg" alt="First slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Never surrender!</h1>
+                    <p>Prog 91 : Hammerstein hammers the Volgs</p>
+                    <p><a class="btn btn-lg btn-primary" href="/prog/91" role="button">View more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="second-slide" src="/img/banner_0.jpg" })" alt="Second slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Action packed stories from outer space!</h1>
+                    <p>Prog 0 : Pilot issue of the future!</p>
+                    <p><a class="btn btn-lg btn-primary" href="/prog/0" role="button">View more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="third-slide" src="/img/banner_79.jpg" })" alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Fear and drokking loathing</h1>
+                    <p>Prog 79 : Dredd in Las Vegas</p>
+                    <p><a class="btn btn-lg btn-primary" href="/prog/79" role="button">View more</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.carousel -->
+
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="img-circle" src="/img/cover_thumb.jpg" alt="ALL. THE. PROGS." width="140" height="140">
+            <h2>Every Cover</h2>
+            <p>Almost 40 years of classic thrills! Choose your favourites from over 1800 jaw-dropping progs! These scrotnig prints are guaranteed to keep your home thrill sucker free</p>
+            <p><a class="btn btn-default" href="@Url.Action("CoverList", "Cover")" role="button">View covers &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="img-circle" src="/img/fistofdredd.png" alt="Classic moments of thrill-power" width="140" height="140">
+            <h2>Classic panels and scenes</h2>
+            <p>"Gaze into the Fist of Dredd", "Mind the Oranges, Marlon!", "Who the hell's gonna mess with us?" From crowning moments of awesome to mind-blowing revelations, our hardworking droids have selected the very greatest examples of thrill-power for your walls.</p>
+            <p><a class="btn btn-default" href="@Url.Action("MomentList", "Moment")" role="button">View panels &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="img-circle" src="/img/bigjobs.jpg" alt="BIG JOBS!" width="140" height="140">
+            <h2>BIG JOBS!</h2>
+            <p>BIG JOBS! BIG JOBS!</p>
+            <p><a class="btn btn-default" href="#" role="button">BIG JOBS! &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
+
+@section Scripts{
+    <script language="JavaScript" type="text/javascript">
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          interval: 3000
+        })
+      });
+    </script>
+}

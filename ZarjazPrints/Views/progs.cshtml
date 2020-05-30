@@ -1,0 +1,38 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase < ZarjazPrints.ViewModels.ProgListViewModel>
+@{ 
+    Layout = "Layout.cshtml";
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Choose your favourite covers from over 1800 thrill-packed progs</p>
+        </div>
+    </div>
+
+    <div id="progList">
+        @Html.Partial("_progList", Model);
+    </div>
+
+</div>
+<script type="text/javascript">
+        
+        $('#progList').on('click', 'a[data-startindex]', function (evt) {
+            evt.preventDefault();
+            var startIndex = $(evt.currentTarget).data('startindex');
+            $('#progList').load(
+                "/progList",
+                {
+                    startIndex : startIndex,
+                    count : 12,
+                    searchOptions: {
+                        Artist: $('#progList #searchOptions_Artist').val(),
+                        Cover: $('#progList #searchOptions_Cover').val()
+                    }
+                }
+                
+            );
+        });
+
+</script>

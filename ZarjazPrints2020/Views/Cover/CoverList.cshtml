@@ -1,0 +1,72 @@
+﻿@model ZarjazPrints2020.Models.Response.CoverListViewModel
+@{
+    var progs = Model.Progs;
+    var query = Model.Query;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Choose your favourite covers from over 1800 thrill-packed progs!</h1>
+        </div>
+    </div>
+
+    <div id="progList">
+        <div class="row">
+            @foreach (var prog in progs)
+            {
+                <div class="col-lg-3">
+                    <h2>Prog @prog.Prog</h2>
+                    <img src="@Url.Action("Thumbnail", "Image", new { progId = prog.Prog })" alt="title here" title="title here">
+                    <p><a class="btn btn-default" href="@Url.Action("SingleProg", "Cover", new { progId = prog.Prog })" role="button">View &raquo;</a></p>
+                </div>
+            }
+
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                Showing results @progs.FirstItemOnPage - @progs.LastItemOnPage of @progs.TotalItemCount
+            </div>
+            <div class="col-xs-12 text-right">
+                @if (progs.PageCount > 1)
+                {
+                    if (!progs.IsFirstPage)
+                    {
+                        <a class="btn btn-default" href="@Url.Action("CoverList", "Cover", new {query.Artist, query.Cover, query.MonthYear, query.Year, Page=1, query.PageSize})">First</a>
+                    }
+                    var minPage = Math.Max(1, progs.PageNumber - 5);
+                    var maxPage = Math.Min(minPage + 10, progs.PageCount);
+                    for (var pg = minPage; pg <= maxPage; pg++)
+                    {
+                        <a class="btn btn-default" href="@Url.Action("CoverList", "Cover", new {query.Artist, query.Cover, query.MonthYear, query.Year, Page=pg, query.PageSize})">@pg</a>
+
+                    }
+                    if (!progs.IsLastPage)
+                    {
+                        <a class="btn btn-default" href="@Url.Action("CoverList", "Cover", new {query.Artist, query.Cover, query.MonthYear, query.Year, Page=progs.PageCount, query.PageSize})">Last</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+
+        $('#progList').on('click', 'a[data-startindex]', function (evt) {
+            evt.preventDefault();
+            var startIndex = $(evt.currentTarget).data('startindex');
+            $('#progList').load(
+                "/progList",
+                {
+                    startIndex : startIndex,
+                    count : 12,
+                    searchOptions: {
+                        Artist: $('#progList #searchOptions_Artist').val(),
+                        Cover: $('#progList #searchOptions_Cover').val()
+                    }
+                }
+
+            );
+        });
+
+</script>

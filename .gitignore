@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+#extractor isn't part of this proj, just some scripts I used for scraping the prog data
+extractor/

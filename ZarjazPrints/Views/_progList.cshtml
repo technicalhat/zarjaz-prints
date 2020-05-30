@@ -1,0 +1,34 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase < ZarjazPrints.ViewModels.ProgListViewModel>
+
+    @{
+        var rows = Model.Progs.Select((prog, index) => new { prog, index })
+            .GroupBy(g => g.index / 4, i => i.prog);
+        foreach (var row in rows)
+        {
+
+            <div class="row">
+                @foreach (var prog in row)
+                {
+                    <div class="col-lg-3">
+                        <h2>Prog @prog.Prog</h2>
+                        <img src="http://localhost:8080/@prog.Thumbnail" alt="@prog.Cover" title="@prog.Cover">
+                        <p><a class="btn btn-default" href="/prog/@prog.Prog" role="button">View &raquo;</a></p>
+                    </div><!-- /.col-lg-4 -->
+                }
+            </div>
+        }
+    }
+<input type="hidden" id="searchOptions_Artist" value="@Model.SearchOptions.Artist"/>
+<input type="hidden" id="searchOptions_Cover" value="@Model.SearchOptions.Cover" />
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-4">
+            @if (Model.StartIndex > 0) {
+                <a href="#" data-startindex="@(Model.StartIndex - 12)" class="btn btn-primary btn-circle" alt="Previous"><i class="fa fa-arrow-left"></i></a>
+            }
+        </div>
+        <div class="col-lg-2">
+            @if (Model.StartIndex + 12 < Model.Total) {
+                <a href="#" data-startindex="@(Model.StartIndex + 12)" class="btn btn-primary btn-circle" alt="Next"><i class="fa fa-arrow-right"></i></a>
+            }
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
